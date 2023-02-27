@@ -4,6 +4,7 @@ import os
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
+import tensorflow as tf
 
 from utils import Upsampler
 
@@ -20,6 +21,7 @@ def main():
     flags = get_flags()
 
     upsampler = Upsampler(input_dir=flags.input_dir, output_dir=flags.output_dir)
+    print("\n________________Num GPUs Available: ", tf.config.list_physical_devices('GPU'))
     upsampler.upsample()
 
 
